@@ -138,8 +138,7 @@ fun CityListScreen(
                     } else {
                         Text("Update City")
                     }
-                }
-            }
+                } }
         }
 
         LazyColumn(
@@ -162,10 +161,7 @@ fun CityListScreen(
                 if (index < cities.lastIndex) {
                     HorizontalDivider()
                 }
-            }
-        }
-    }
-}
+            } } } }
 
 @Composable
 //// adding onClick parameter
@@ -193,9 +189,7 @@ fun CityRow(
             text = city.province,
             fontSize = 20.sp,
             modifier = Modifier.weight(1f)
-        )
-    }
-}
+        ) } }
 
 @Preview(showBackground = true)
 @Composable
@@ -210,6 +204,5 @@ fun CityListScreenPreview() {
 
             onAddCity = { },
             onUpdateCity = { _, _ -> }
-        )
-    }
+        ) }
 }
