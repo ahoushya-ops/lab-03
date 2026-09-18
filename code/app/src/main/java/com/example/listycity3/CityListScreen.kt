@@ -37,16 +37,15 @@ fun CityListScreen(
     var selectedCity by remember {
         mutableStateOf<City?>(null)
     }
+
+    ///Suggested by ChatGPT
     var newCityName by remember {
-        mutableStateOf("")
-    }
+        mutableStateOf("") }
     var newProvinceName by remember {
         mutableStateOf("")
     }
-
     var showAddCityFields by remember {
-        mutableStateOf(false)
-    }
+        mutableStateOf(false) }
 
 
     Column(
@@ -58,26 +57,23 @@ fun CityListScreen(
         ) {
             FloatingActionButton(
                 modifier = Modifier.padding(16.dp),
-
                 onClick = {
                     showAddCityFields = !showAddCityFields
 
                     if (!showAddCityFields) {
-                        selectedCity = null
+
                         newCityName = ""
                         newProvinceName = ""
+                        selectedCity = null
                     }
-                }
-            ) {
-                Text("+")
-            }
+                }) { Text("Add") }
         }
 
         if (showAddCityFields) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp)
+                    .padding(30.dp)
             ) {
                 OutlinedTextField(
                     value = newCityName,
@@ -85,11 +81,9 @@ fun CityListScreen(
                     onValueChange = {
                         newCityName = it
                     },
-
                     label = {
                         Text("City")
                     },
-
                     modifier = Modifier.weight(1f)
                 )
 
@@ -123,15 +117,14 @@ fun CityListScreen(
                                 name = newCityName,
                                 province = newProvinceName
                             )
-
+///I got help from ChatGPT to add this part to the code and
+/// understand how to decide if we are going to update or add
                             if (selectedCity == null) {
                                 onAddCity(newCity)
                             } else {
                                 onUpdateCity(
                                     selectedCity!!,
-                                    newCity
-                                )
-                            }
+                                    newCity) }
 
                             newCityName = ""
                             newProvinceName = ""
@@ -161,6 +154,7 @@ fun CityListScreen(
                         selectedCity = city
                         newCityName = city.name
                         newProvinceName = city.province
+                        //changing the state of showAddCityFields
                         showAddCityFields = true
                     }
                 )
@@ -174,6 +168,7 @@ fun CityListScreen(
 }
 
 @Composable
+//// adding onClick parameter
 fun CityRow(
     city: City,
     onClick: () -> Unit
@@ -181,21 +176,22 @@ fun CityRow(
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            //making the row clickable
             .clickable {onClick()}
             .padding(
-                horizontal = 20.dp,
-                vertical = 16.dp
+                horizontal = 30.dp,
+                vertical = 30.dp
             )
     ) {
         Text(
             text = city.name,
-            fontSize = 30.sp,
+            fontSize = 20.sp,
             modifier = Modifier.weight(1f)
         )
 
         Text(
             text = city.province,
-            fontSize = 30.sp,
+            fontSize = 20.sp,
             modifier = Modifier.weight(1f)
         )
     }
